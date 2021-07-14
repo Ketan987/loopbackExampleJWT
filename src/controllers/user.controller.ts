@@ -60,7 +60,7 @@ export class UserDataController {
       return UserAuth.signupBL(this.userModelRepository, userModel);
     }
     catch(err){
-      return {status : 'Failed'}
+      return {status : 'Failed', message : err.message}
     }
     // return this.userModelRepository.create(userModel);
   }
