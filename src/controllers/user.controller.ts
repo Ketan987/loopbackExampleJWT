@@ -26,6 +26,7 @@ import { signupBL } from '../BL/signup.BL';
 import {UserModel} from '../models';
 import {UserModelRepository} from '../repositories';
 import jsonwebtoken from 'jsonwebtoken';
+import { UserAuth } from '../BL/user.BL';
 
 
 export class UserDataController {
@@ -55,7 +56,8 @@ export class UserDataController {
   ): Promise<any> {
 
     try{
-      return signupBL(this.userModelRepository, userModel);
+      // return signupBL(this.userModelRepository, userModel);
+      return UserAuth.signupBL(this.userModelRepository, userModel);
     }
     catch(err){
       return {status : 'Failed'}
@@ -85,7 +87,7 @@ export class UserDataController {
   ): Promise<any> {
 
     try{
-      return loginBL(this.userModelRepository, userModel, jsonwebtoken)
+      return UserAuth.loginBL(this.userModelRepository, userModel, jsonwebtoken)
     }
     catch(err){
       return {status : 'Failed', message : err.message}
