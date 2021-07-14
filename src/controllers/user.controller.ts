@@ -87,7 +87,8 @@ export class UserDataController {
   ): Promise<any> {
 
     try{
-      return UserAuth.loginBL(this.userModelRepository, userModel, jsonwebtoken)
+      let output = await UserAuth.loginBL(this.userModelRepository, userModel, jsonwebtoken);
+      return output
     }
     catch(err){
       return {status : 'Failed', message : err.message}
